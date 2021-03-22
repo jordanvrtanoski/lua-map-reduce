@@ -5,7 +5,11 @@ luamapr.o: luamapr.c
 clean:
 	rm *.o
 	rm *.so
+	rm luatest
 
-test: libluamapr.so
-	lua test.lua
+test: libluamapr.so luatest
+	./luatest
+
+luatest: luatest.cpp
+	g++ -I/usr/include/lua5.3/ luatest.cpp -llua5.3 -o luatest
 
